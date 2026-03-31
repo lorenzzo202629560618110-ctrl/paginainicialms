@@ -1,1 +1,534 @@
 
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Cosmos Auto Peças | Peças e Acessórios Usados</title>
+    
+    <!-- Bootstrap 5 CSS + Icons + Font Awesome -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --cosmos-blue: #0a2b4e;
+            --cosmos-gold: #c9a03d;
+            --cosmos-dark: #1e2a3e;
+            --cosmos-gray: #f8f9fc;
+            --cosmos-accent: #e67e22;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1f2937;
+            scroll-behavior: smooth;
+        }
+        
+        h1, h2, h3, h4, .navbar-brand, .btn, .footer-logo {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+        
+        /* Navbar personalizada */
+        .navbar {
+            background: rgba(10, 43, 78, 0.95);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: all 0.3s;
+        }
+        .navbar-brand {
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            font-size: 1.6rem;
+            color: white !important;
+        }
+        .navbar-brand span {
+            color: var(--cosmos-gold);
+        }
+        .nav-link {
+            color: rgba(255,255,255,0.85) !important;
+            font-weight: 500;
+            transition: 0.2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--cosmos-gold) !important;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #0a2b4e 0%, #123b62 100%);
+            color: white;
+            padding: 100px 0 80px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.05)" fill-opacity="1" d="M0,192L48,197.3C96,203,192,213,288,208C384,203,480,181,576,186.7C672,192,768,224,864,229.3C960,235,1056,213,1152,192C1248,171,1344,149,1392,138.7L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-repeat: no-repeat;
+            background-position: bottom;
+            background-size: cover;
+            opacity: 0.2;
+            pointer-events: none;
+        }
+        .hero h1 {
+            font-weight: 800;
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+        }
+        .hero .highlight {
+            color: var(--cosmos-gold);
+        }
+        .hero-badge {
+            background: rgba(201,160,61,0.2);
+            display: inline-block;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            backdrop-filter: blur(4px);
+            margin-bottom: 1.2rem;
+        }
+        
+        /* Seções */
+        .section-title {
+            font-weight: 800;
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--cosmos-gold);
+            border-radius: 4px;
+        }
+        
+        .card-hover {
+            transition: transform 0.2s ease, box-shadow 0.2s;
+            border: none;
+            border-radius: 1rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .info-card {
+            background: var(--cosmos-gray);
+            border-left: 5px solid var(--cosmos-gold);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            height: 100%;
+            transition: all 0.2s;
+        }
+        
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: rgba(10,43,78,0.1);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: var(--cosmos-blue);
+            font-size: 1.4rem;
+        }
+        
+        .btn-cosmos {
+            background: var(--cosmos-gold);
+            color: #0a2b4e;
+            font-weight: 700;
+            padding: 12px 28px;
+            border-radius: 40px;
+            transition: all 0.3s;
+            border: none;
+        }
+        .btn-cosmos:hover {
+            background: #b8860b;
+            color: white;
+            transform: scale(1.02);
+        }
+        
+        .btn-outline-cosmos {
+            border: 2px solid var(--cosmos-gold);
+            color: var(--cosmos-gold);
+            background: transparent;
+            border-radius: 40px;
+            font-weight: 600;
+            padding: 10px 24px;
+        }
+        .btn-outline-cosmos:hover {
+            background: var(--cosmos-gold);
+            color: #0a2b4e;
+        }
+        
+        footer {
+            background: #0a2b4e;
+            color: #ddd;
+            padding-top: 3rem;
+            border-top: 5px solid var(--cosmos-gold);
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .footer-links a:hover {
+            color: var(--cosmos-gold);
+        }
+        
+        .badge-info {
+            background-color: #eef2ff;
+            color: #1e3a8a;
+            font-weight: 500;
+            padding: 8px 14px;
+            border-radius: 50px;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navegação -->
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Cosmos<span>Auto</span> Peças</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto gap-2">
+                <li class="nav-item"><a class="nav-link active" href="#home">Início</a></li>
+                <li class="nav-item"><a class="nav-link" href="#sobre">Sobre</a></li>
+                <li class="nav-item"><a class="nav-link" href="#servicos">Peças</a></li>
+                <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+                <li class="nav-item"><a class="nav-link" href="#localizacao">Localização</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <div class="container position-relative">
+        <div class="row align-items-center">
+            <div class="col-lg-7" data-aos="fade-up">
+                <div class="hero-badge"><i class="fas fa-car me-2"></i> +14 anos de tradição | Peças originais recondicionadas</div>
+                <h1>Qualidade e confiança em <span class="highlight">peças usadas</span> para seu veículo</h1>
+                <p class="lead mt-3 mb-4">Economia inteligente sem abrir mão da segurança. Mais de 14 anos oferecendo peças e acessórios automotivos de procedência para Curitiba e região.</p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="#contato" class="btn btn-cosmos btn-lg"><i class="fas fa-phone-alt me-2"></i> Fale Conosco</a>
+                    <a href="#localizacao" class="btn btn-outline-light btn-lg"><i class="fas fa-map-marker-alt me-2"></i> Visite a loja</a>
+                </div>
+                <div class="mt-4 d-flex gap-4">
+                    <div><i class="fas fa-check-circle text-warning"></i> <span class="small">Peças com garantia</span></div>
+                    <div><i class="fas fa-truck text-warning"></i> <span class="small">Entrega na região</span></div>
+                    <div><i class="fas fa-hand-holding-usd text-warning"></i> <span class="small">Melhor custo-benefício</span></div>
+                </div>
+            </div>
+            <div class="col-lg-5 d-none d-lg-block text-center">
+                <i class="fas fa-oil-can" style="font-size: 12rem; opacity: 0.2; color: #ffd966;"></i>
+                <i class="fas fa-car-side position-absolute" style="font-size: 5rem; bottom: 20px; right: 30px; opacity: 0.3;"></i>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sobre / Dados da Empresa -->
+<section id="sobre" class="py-5">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-6">
+                <h2 class="section-title">Sobre a Cosmos Auto Peças</h2>
+                <p class="mt-3 fs-5">Referência no segmento de autopeças usadas e acessórios em Curitiba. Trabalhamos com peças rigorosamente testadas, promovendo economia circular e sustentabilidade automotiva.</p>
+                <div class="row mt-4">
+                    <div class="col-md-6 mb-3">
+                        <div class="info-card">
+                            <i class="fas fa-building fa-2x mb-2" style="color: var(--cosmos-gold);"></i>
+                            <h5><i class="fas fa-chart-line me-1"></i> Empresa Ativa</h5>
+                            <p class="mb-0 small">Situação Cadastral: <strong>Ativa</strong> desde 17/10/2011<br>Porte: Pequeno Porte | Simples Nacional</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="info-card">
+                            <i class="fas fa-history fa-2x mb-2" style="color: var(--cosmos-gold);"></i>
+                            <h5><i class="fas fa-calendar-alt"></i> Experiência</h5>
+                            <p class="mb-0 small"><strong>14 anos, 5 meses e 14 dias</strong> de mercado<br>Data Abertura: 17/10/2011</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="info-card">
+                            <i class="fas fa-barcode fa-2x mb-2" style="color: var(--cosmos-gold);"></i>
+                            <h5>Dados Fiscais</h5>
+                            <p class="mb-0 small">CNPJ: 15.799.986/0001-89<br>IE PR: 90617248-82<br>Capital Social: R$ 75.000,00</p>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="info-card">
+                            <i class="fas fa-check-circle fa-2x mb-2" style="color: var(--cosmos-gold);"></i>
+                            <h5>Optante pelo Simples</h5>
+                            <p class="mb-0 small">Regime: Simples Nacional desde 01/01/2024<br>Natureza: Sociedade Empresária Limitada</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="bg-light p-4 rounded-4 h-100 d-flex flex-column justify-content-center">
+                    <div class="d-flex align-items-center gap-3 mb-3">
+                        <i class="fas fa-gem fa-3x" style="color: var(--cosmos-gold);"></i>
+                        <h3 class="mb-0">Missão & Valores</h3>
+                    </div>
+                    <p><strong>Missão:</strong> Oferecer peças automotivas usadas de alta qualidade, promovendo economia e sustentabilidade, com atendimento transparente.</p>
+                    <p><strong>Visão:</strong> Ser referência em autopeças seminovas no Paraná, reconhecida pela confiança e compromisso com o cliente.</p>
+                    <p><strong>Valores:</strong> Ética, respeito ao meio ambiente, peças certificadas e relacionamento duradouro.</p>
+                    <hr>
+                    <div class="mt-2">
+                        <i class="fas fa-trophy me-2 text-warning"></i> +14 anos contribuindo com a mobilidade de Curitiba.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Catálogo de Serviços / Principais Peças -->
+<section id="servicos" class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title" style="display: inline-block;">Peças & Acessórios em Destaque</h2>
+            <p class="lead mt-3">Confira nosso estoque variado de componentes usados com procedência e garantia.</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover h-100 text-center p-3">
+                    <i class="fas fa-car-battery fa-3x mt-3" style="color: var(--cosmos-gold);"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Sistemas Elétricos</h5>
+                        <p class="card-text">Alternadores, motores de partida, baterias revisadas e muito mais.</p>
+                        <span class="badge bg-dark">Sob consulta</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover h-100 text-center p-3">
+                    <i class="fas fa-fan fa-3x mt-3" style="color: var(--cosmos-gold);"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Sistemas de Arrefecimento</h5>
+                        <p class="card-text">Radiadores, ventoinhas, reservatórios e mangueiras originais.</p>
+                        <span class="badge bg-dark">Garantia 90 dias</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover h-100 text-center p-3">
+                    <i class="fas fa-cogs fa-3x mt-3" style="color: var(--cosmos-gold);"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Motor & Transmissão</h5>
+                        <p class="card-text">Blocos, cabeçotes, câmbios, embreagens e componentes selecionados.</p>
+                        <span class="badge bg-dark">Testado</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <div class="card card-hover h-100 text-center p-3">
+                    <i class="fas fa-tachometer-alt fa-3x mt-3" style="color: var(--cosmos-gold);"></i>
+                    <div class="card-body">
+                        <h5 class="card-title">Suspensão & Direção</h5>
+                        <p class="card-text">Amortecedores, bandejas, terminais, pivôs e acessórios de direção.</p>
+                        <span class="badge bg-dark">Entrega rápida</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-5">
+            <a href="#contato" class="btn btn-outline-cosmos btn-lg"><i class="fas fa-search me-2"></i> Consultar disponibilidade de peças</a>
+        </div>
+    </div>
+</section>
+
+<!-- Informações Diferenciais + Frases -->
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-md-6">
+                <img src="https://placehold.co/600x400/0a2b4e/white?text=COSMOS+AUTO+PECAS&font=montserrat" class="img-fluid rounded-4 shadow" alt="Loja Cosmos Auto Peças">
+            </div>
+            <div class="col-md-6">
+                <i class="fas fa-quote-left fa-3x mb-3 opacity-25"></i>
+                <h3 class="fw-bold">“Qualidade que acelera sua confiança”</h3>
+                <p class="fs-5 mt-3">Na Cosmos Auto Peças, cada peça passa por criteriosa inspeção para garantir o melhor desempenho e segurança para o seu carro. Economia inteligente e compromisso com o meio ambiente: reaproveitar com excelência.</p>
+                <div class="d-flex mt-4 gap-4 flex-wrap">
+                    <div><i class="fas fa-shield-alt fa-fw text-warning"></i> <strong>Peças com garantia</strong></div>
+                    <div><i class="fas fa-exchange-alt fa-fw text-warning"></i> <strong>Troca facilitada</strong></div>
+                    <div><i class="fas fa-hand-sparkles fa-fw text-warning"></i> <strong>Higienização profissional</strong></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contato + Telefone, endereço e mapa -->
+<section id="contato" class="py-5 bg-light">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-lg-5">
+                <h2 class="section-title">Entre em contato</h2>
+                <p class="mb-4">Precisa de uma peça específica? Fale conosco pelos canais oficiais ou visite nossa loja matriz em Curitiba.</p>
+                <div class="mb-4 d-flex align-items-center gap-3">
+                    <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div><h5 class="mb-0">Telefone / WhatsApp</h5>
+                    <a href="tel:+554132453602" class="text-decoration-none fs-5 fw-bold" style="color: var(--cosmos-blue);">(41) 3245-3602</a>
+                    <span class="badge bg-success ms-2"><i class="fas fa-circle"></i> Ligar agora</span>
+                    </div>
+                </div>
+                <div class="mb-4 d-flex align-items-center gap-3">
+                    <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                    <div><h5 class="mb-0">E-mail</h5>
+                    <p class="mb-0">contato@cosmosautopecas.com.br</p>
+                    </div>
+                </div>
+                <div class="mb-4 d-flex align-items-center gap-3">
+                    <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                    <div><h5 class="mb-0">Horário de Funcionamento</h5>
+                    <p class="mb-0">Segunda a Sexta: 8h às 18h | Sábado: 8h às 13h</p>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <a href="tel:+554132453602" class="btn btn-cosmos w-100 py-3"><i class="fas fa-phone me-2"></i> Ligue agora: (41) 3245-3602</a>
+                </div>
+            </div>
+            <div class="col-lg-7" id="localizacao">
+                <div class="card shadow border-0 rounded-4 overflow-hidden">
+                    <div class="card-body p-0">
+                        <div style="background:#e9ecef; padding: 20px;">
+                            <h4><i class="fas fa-map-pin me-2" style="color: var(--cosmos-gold);"></i> Localização Matriz</h4>
+                            <p class="mb-2"><strong>Rua Aracy de Carvalho Guimaraes Rosa, 310 - Cidade Industrial</strong><br>Curitiba - PR, 81170-745</p>
+                            <p><i class="fas fa-building me-1"></i> Cosmos Auto Peças LTDA | Matriz<br>CEP: 81170-745 | Tipo: Matriz</p>
+                            <hr>
+                            <div class="ratio ratio-16x9 rounded-3 overflow-hidden">
+                                <!-- Mapa estático (Google Maps embed simples com endereço real) -->
+                                <iframe src="https://maps.google.com/maps?q=Rua%20Aracy%20de%20Carvalho%20Guimaraes%20Rosa%2C%20310%20-%20Cidade%20Industrial%2C%20Curitiba%20-%20PR%2C%2081170-745&output=embed&z=16" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                            </div>
+                            <div class="mt-3 d-flex flex-wrap justify-content-between align-items-center">
+                                <div class="badge-info"><i class="fas fa-flag-checkered"></i> Empresa Ativa desde 2011</div>
+                                <div class="badge-info"><i class="fas fa-truck-fast"></i> Região Industrial</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Informações adicionais (CNPJ, situação, simples) -->
+<section class="py-4 bg-white border-top">
+    <div class="container">
+        <div class="row text-center g-3">
+            <div class="col-md-3 col-6">
+                <i class="fas fa-id-card fa-2x mb-2" style="color: var(--cosmos-gold);"></i>
+                <p class="mb-0 fw-bold">CNPJ</p>
+                <small>15.799.986/0001-89</small>
+            </div>
+            <div class="col-md-3 col-6">
+                <i class="fas fa-chart-simple fa-2x mb-2" style="color: var(--cosmos-gold);"></i>
+                <p class="mb-0 fw-bold">Regime Tributário</p>
+                <small>Simples Nacional</small>
+            </div>
+            <div class="col-md-3 col-6">
+                <i class="fas fa-city fa-2x mb-2" style="color: var(--cosmos-gold);"></i>
+                <p class="mb-0 fw-bold">Natureza Jurídica</p>
+                <small>Sociedade Empresária Limitada</small>
+            </div>
+            <div class="col-md-3 col-6">
+                <i class="fas fa-coins fa-2x mb-2" style="color: var(--cosmos-gold);"></i>
+                <p class="mb-0 fw-bold">Capital Social</p>
+                <small>R$ 75.000,00</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row gy-4">
+            <div class="col-md-5">
+                <h4 class="text-white mb-3">Cosmos Auto Peças</h4>
+                <p>Peças e acessórios usados para veículos automotores com procedência, garantia e respeito ao cliente. Mais de 14 anos de história.</p>
+                <div><i class="fas fa-map-marker-alt me-2"></i> Rua Aracy de Carvalho Guimaraes Rosa, 310 - CIC, Curitiba/PR</div>
+                <div><i class="fas fa-phone me-2"></i> (41) 3245-3602</div>
+                <div><i class="fas fa-envelope me-2"></i> contato@cosmosautopecas.com.br</div>
+            </div>
+            <div class="col-md-3">
+                <h5 class="text-white">Links Rápidos</h5>
+                <ul class="list-unstyled footer-links">
+                    <li><a href="#home" class="text-decoration-none">Início</a></li>
+                    <li><a href="#sobre" class="text-decoration-none">Sobre a empresa</a></li>
+                    <li><a href="#servicos" class="text-decoration-none">Peças em estoque</a></li>
+                    <li><a href="#contato" class="text-decoration-none">Contato & Localização</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h5 class="text-white">Informações Legais</h5>
+                <p class="small mb-1">Inscrição Estadual PR: 90617248-82<br>Data Situação Cadastral: 17/10/2011<br>Optante pelo Simples: Sim (01/01/2024)<br>Porte: Pequeno Porte</p>
+                <div class="mt-2">
+                    <span class="badge bg-warning text-dark"><i class="fas fa-store"></i> Matriz - Ativa</span>
+                </div>
+            </div>
+        </div>
+        <hr class="mt-4 opacity-25">
+        <div class="text-center pb-3 small">
+            &copy; 2025 Cosmos Auto Peças LTDA | CNPJ 15.799.986/0001-89 | Todos os direitos reservados.<br>
+            Desenvolvido para oferecer soluções automotivas sustentáveis.
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Ativar link ativo no scroll simples
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop - 100;
+            if (scrollY >= sectionTop) {
+                current = section.getAttribute('id');
+            }
+        });
+        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+</script>
+</body>
+</html>
